@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Creating Objects</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+	<script>
+
+		function vehicleConstructor(name, wheels, passengers, speed)
+		{
+			// var vehicle = {};
+			this.name = name;
+			this.wheels = wheels;
+			this.passengers = passengers;
+			this.speed = speed;
+			this.makeNoise = function() 
+			{
+				console.log('Vroom!');
+			}
+			var distance_travelled = 0;
+			var updateDistanceTravelled = function()
+			{
+				distance_travelled += speed;
+			}
+			this.move = function()
+			{
+				updateDistanceTravelled();
+				this.makeNoise();
+			}
+			this.checkMiles = function()
+			{
+				console.log(distance_travelled);
+			}
+		}
+
+		var Bike = new vehicleConstructor("Bike", 2, 1, 10);
+		Bike.makeNoise = function()
+		{
+			console.log('ring ring!');
+		}
+		Bike.makeNoise();
+
+		var Sedan = new vehicleConstructor("Sedan", 4, 4, 35);
+		Sedan.makeNoise = function()
+		{
+			console.log('Honk Honk!');
+		}
+		Sedan.makeNoise();
+
+		var Bus = new vehicleConstructor("Bus", 4, 1, 30);
+		Bus.pickUpPassengers = function()
+		{
+			Bus.passengers += 2;
+		}
+		Bus.makeNoise();
+		console.log(Bus.passengers);
+		Bus.pickUpPassengers();
+		console.log(Bus.passengers);
+		Bus.move();
+		Bus.checkMiles();
+		Bus.move();
+		Bus.checkMiles();
+	</script>
+</body>
+</html>
